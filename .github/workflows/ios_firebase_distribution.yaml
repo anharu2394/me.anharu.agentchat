@@ -36,7 +36,7 @@ jobs:
         uses: subosito/flutter-action@v1
         with:
           channel: stable
-          flutter-version: "3.19.5"
+          flutter-version: "3.22.0"
       - name: Setup packages
         run: |
           flutter pub get

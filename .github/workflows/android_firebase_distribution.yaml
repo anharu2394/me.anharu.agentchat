@@ -1,0 +1,50 @@
+name: "[DEV] Build and Publish Android"
+on:
+  push:
+jobs:
+  # Build job
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup repository
+        uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: "temurin"
+          java-version: "11.x"
+      - name: setup flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          flutter-version: "3.22.0"
+      - name: check version
+        run: flutter --version
+      - name: Setup packages
+        run: |
+          flutter pub get
+          dart run build_runner build -d
+      - name: Setup Firebase Project
+        env:
+          FIREBASE_PROJ_DEV_NAME: ${{ secrets.FIREBASE_PROJ_DEV_NAME }}
+          FIREBASE_AUTH_TOKEN: ${{ secrets.FIREBASE_AUTH_TOKEN }}
+        run: |
+          curl -sL https://firebase.tools | bash
+          dart pub global activate flutterfire_cli
+          flutterfire configure -p $FIREBASE_PROJ_DEV_NAME -y --platforms "ios, android" -i "com.example.example-app" -a "com.example.example_app" -m "com.example.example-app"  -w "1:XXX:web:YYY" -x "1:XXX:web:YYY" -t $FIREBASE_AUTH_TOKEN -f > null
+      - name: Create key.properties
+        run: |
+          echo ${{ secrets.ANDROID_KEY_JKS }} | base64 -d > android/app/release.jks
+          echo 'storeFile=release.jks' > android/key.properties
+          echo 'storePassword=${{ secrets.ANDROID_STORE_PASSWORD }}' >> android/key.properties
+          echo 'keyPassword=${{ secrets.ANDROID_ALIAS_PASSWORD }}' >> android/key.properties
+          echo 'keyAlias=${{ secrets.ANDROID_KEY_ALIAS }}' >> android/key.properties
+      - name: Build APK
+        run: flutter build apk --release --build-number=$GITHUB_RUN_NUMBER
+      - name: Upload apk to Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1
+        with:
+          appId: ${{secrets.FIREBASE_DEV_ANDROID_ID}}
+          serviceCredentialsFileContent: ${{secrets.FIREBASE_DEV_TOKEN}}
+          groups: admin
+          file: ./build/app/outputs/apk/release/app-release.apk
+          releaseNotes: $GITHUB_REF_NAME
