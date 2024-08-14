@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "19392028387",
+    "project_id": "agent-chat-dbdf5",
+    "storage_bucket": "agent-chat-dbdf5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:19392028387:android:10652b09d9efd8bc32efd6",
+        "android_client_info": {
+          "package_name": "me.anharu.agentchat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "19392028387-2pcb53hpvi2e4d3ckb0ettigv3eq4e23.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbMtCTA4Ota-nzvH3ZNQtvSe08auaCGvc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "19392028387-2pcb53hpvi2e4d3ckb0ettigv3eq4e23.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "19392028387-hrbfcfvm634j0j3ml0if725oft8010bd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "me.anharu.agentchat"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
