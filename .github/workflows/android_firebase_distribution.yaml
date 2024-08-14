@@ -30,10 +30,10 @@ jobs:
         run: |
           curl -sL https://firebase.tools | bash
           dart pub global activate flutterfire_cli
-          flutterfire configure -p $FIREBASE_PROJ_DEV_NAME -y --platforms "ios, android" -i "com.example.example-app" -a "com.example.example_app" -m "com.example.example-app"  -w "1:XXX:web:YYY" -x "1:XXX:web:YYY" -t $FIREBASE_AUTH_TOKEN -f > null
+          flutterfire configure -p $FIREBASE_PROJ_DEV_NAME -y --platforms "ios, android" -i "me.anharu.agentchat" -a "me.anharu.agentchat" -m "me.anharu.agentchat"  -w "1:XXX:web:YYY" -x "1:XXX:web:YYY" -t $FIREBASE_AUTH_TOKEN -f > null
       - name: Create key.properties
         run: |
-          echo ${{ secrets.ANDROID_KEY_JKS }} | base64 -d > android/app/release.jks
+          echo '${{ secrets.ANDROID_KEY_JKS }}' | base64 -d > android/app/release.jks
           echo 'storeFile=release.jks' > android/key.properties
           echo 'storePassword=${{ secrets.ANDROID_STORE_PASSWORD }}' >> android/key.properties
           echo 'keyPassword=${{ secrets.ANDROID_ALIAS_PASSWORD }}' >> android/key.properties
