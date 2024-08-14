@@ -531,7 +531,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.anharu.agentchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Chat Agent AdHoc";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Agent Chat AdHoc";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -565,7 +565,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = me.anharu.agentchat;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Chat Agent AdHoc";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = "Agent Chat AdHoc";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
